@@ -3,3 +3,7 @@ title:
 logo: /assets/vipera-v3-avatar.png
 description: A framework for dynamic languages on micro-core architectures
 og:site_name: Vipera
+google_fonts:
+  - name: "Play"
+    weights: "400,400i,700,700i"
+    
