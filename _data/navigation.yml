@@ -5,7 +5,7 @@
 - title: Languages
   url: /languages
 - title: Developer zone
-  url: /devzone
+#  url: /devzone
   subfolderitems:
     - page: Hardware
       url: /devzone/hardware/
