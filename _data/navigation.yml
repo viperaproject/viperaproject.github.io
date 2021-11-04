@@ -2,8 +2,10 @@
 
 - title: Home
   url: /
-- title: Developer zone
-  url: /devzone
+- title: Developer zone - language
+  url: /devzone/language
+- title: Developer zone - hardware
+  url: /devzone/hardware
 # - title: Posts
 #   url: /posts/
 # - title: Categories
