@@ -1,6 +1,6 @@
 ---
-title: "vPython: Python for micro-core devices"
-sub_title: "Overview"
+#title: "vPython: Python for micro-core devices"
+#sub_title: "Overview"
 ---
 
 # vPython
