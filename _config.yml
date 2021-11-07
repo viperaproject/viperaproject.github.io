@@ -1,4 +1,5 @@
-remote_theme: "mmistakes/so-simple-theme@3.2.0"
+#remote_theme: "mmistakes/so-simple-theme@3.2.0"
+theme: minima
 url: https://vipera.dev
 baseurl: #
 title: " "
