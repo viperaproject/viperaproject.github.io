@@ -52,6 +52,7 @@ h4,
 h5,
 h6 {
   font-family: $headline-font-family;
+  font-style: italic;
   text-rendering: optimizeLegibility; /* enable common ligatures and kerning */
 }
 
