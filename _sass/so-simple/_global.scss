@@ -85,7 +85,8 @@
 .site-description {
   margin-bottom: 1em;
   font-family: $description-font-family;
-  @include fluid-type($min-vw, $max-vw, $h5-min, $h5-max);
+  /* @include fluid-type($min-vw, $max-vw, $h5-min, $h5-max); */
+  @include fluid-type($min-vw, $max-vw, $h3-min, $h3-max);
   font-weight: 400;
   font-style: italic;
 }
