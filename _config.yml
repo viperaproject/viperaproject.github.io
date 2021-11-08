@@ -16,7 +16,7 @@
 theme: jekyll-theme-so-simple
 # remote_theme: mmistakes/so-simple-theme
 skin: "/assets/css/skins/default.css"
-locale: en-US
+locale: en-GB
 url: https://vipera.dev
 title: " "
 logo: /assets/vipera-v3-avatar.png

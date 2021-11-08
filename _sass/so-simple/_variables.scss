@@ -45,7 +45,7 @@ $monospace-font-family: Menlo, Consolas, Monaco, "Courier New", Courier, monospa
 
 $base-font-family: $sans-serif-font-family !default;
 $headline-font-family: $sans-serif-font-family !default;
-$title-font-family: $serif-font-family !default;
+$title-font-family: $sans-serif-font-family !default;
 $description-font-family: $serif-font-family !default;
 $meta-font-family: $serif-font-family !default;
 
@@ -91,8 +91,8 @@ $main-sidebar-max-width: $large !default;
 /* Site logo */
 /* $site-logo-width: 75px !default;
 $site-logo-height: 75px !default; */
-$site-logo-width: 100px !default;
-$site-logo-height: 100px !default;
+$site-logo-width: 150px !default;
+$site-logo-height: 150px !default;
 
 /* Border radius */
 $border-radius: 0.25rem !default;
