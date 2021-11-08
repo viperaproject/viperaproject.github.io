@@ -11,7 +11,7 @@
 
 
 .page-title {
-  @include fluid-type($min-vw, $max-vw, 12pt, 24pt);  
+  @include fluid-type($min-vw, $max-vw, 24px, 48px);  
   margin-bottom: 0.5em;
   font-family: $title-font-family;
   font-weight: $page-title-weight;
