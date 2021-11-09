@@ -43,6 +43,7 @@ disqus:
   shortname: # Disqus shortname, e.g. "my_disqus_shortname"
 twitter:
   username: # site's Twitter username, e.g. "mmistakes"
+copyright: EPCC, University of Edinburgh
 
 # Liquid
 liquid:
@@ -94,8 +95,8 @@ defaults:
       share: true
 
 # Site Author
-author:
-  name:
+author: 
+  name: 
   picture:
   email:
   twitter:
