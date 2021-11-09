@@ -3,7 +3,7 @@ title: "vPython"
 image: 
   # path: /images/vPython-scripts.png
   thumbnail: /images/vPython-v2-thumbnail.png
-  caption: "vPython scripts"
+  # caption: "vPython scripts"
 ---
 
 **vPython** is a parallel implementation of Python specially designed for micro-core architectures, on top of the **Vipera** framework. **vPython** is development of the [**ePython**](https://github.com/mesham/epython) to include the execution of codes via both a tiny interpreter (approx. 24KB) and native compilation. 

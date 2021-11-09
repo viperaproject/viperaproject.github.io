@@ -1,8 +1,8 @@
 ---
 title: "Adding a new device"
-# image: 
+image: 
   # path: /images/vPython-scripts.png
-  # thumbnail: /images/vPython-scripts-thumbnail.png
+  thumbnail: /images/Devices-thumbnail.png
   # caption: "vPython scripts"
 ---
 
