@@ -95,6 +95,13 @@ defaults:
       layout: post
       share: true
 
+# Collections
+collections:
+  languages:
+    output: true
+    permalink: /:collection/:path/
+
+
 # Site Author
 author: 
   name: Maurice Jamieson
