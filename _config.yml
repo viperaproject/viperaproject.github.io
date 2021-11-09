@@ -97,7 +97,7 @@ defaults:
 
 # Front Matter Defaults
 defaults:
-  # Recipe defaults
+  # Languages defaults
   - scope:
       path: "_languages"
       type: languages
@@ -105,13 +105,23 @@ defaults:
       layout: post
       comments: true
       share: true
-
+  # DevZone defaults
+  - scope:
+      path: "_devzone"
+      type: devzone
+    values:
+      layout: post
+      comments: true
+      share: true
 
 # Collections
 collections:
   languages:
     output: true
     permalink: /:collection/:path/
+  devzone:
+    output: true
+    permalink: /:collection/:path/    
 
 
 # Site Author

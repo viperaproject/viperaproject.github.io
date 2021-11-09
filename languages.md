@@ -6,4 +6,4 @@ collection: languages
 entries_layout: grid
 ---
 
-Programming languages currently available for **Vipera**:
+The following programming languages currently available for **Vipera**:
