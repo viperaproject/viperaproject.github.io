@@ -102,7 +102,7 @@ defaults:
       path: "_languages"
       type: languages
     values:
-      layout: page
+      layout: post
       comments: false
       share: false
   # DevZone defaults
@@ -110,7 +110,7 @@ defaults:
       path: "_devzone"
       type: devzone
     values:
-      layout: page
+      layout: post
       comments: false
       share: false
 
@@ -126,8 +126,8 @@ collections:
 
 # Site Author
 author: 
-#  name: Maurice Jamieson
-#  picture: /images/Mojo-avatar.png
+ name: The Vipera Team
+  picture: /images/vipera-head.png
   email: 
   twitter:
   links:
