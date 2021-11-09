@@ -6,4 +6,4 @@ image:
   # caption: "vPython scripts"
 ---
 
-Here we will describe how to add support for new device.
+The **Vipera** framework significantly reduces the effort required to add support for a new micro-core architecture. 
