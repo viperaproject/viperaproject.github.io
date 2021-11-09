@@ -1,8 +1,8 @@
 ---
 title: "Adding a new programming language"
-# image: 
+image: 
   # path: /images/vPython-scripts.png
-  # thumbnail: /images/vPython-scripts-thumbnail.png
+  thumbnail: /images/vPython-scripts-thumbnail.png
   # caption: "vPython scripts"
 ---
 
