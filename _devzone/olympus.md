@@ -1,7 +1,7 @@
 ---
 #title: "Olympus native code generation framework"
 image: 
-  # path: /images/vPython-scripts.png
+  path: /images/vPython-scripts.png
   thumbnail: /images/Olympus-components.png
   # caption: "vPython scripts"
 ---
