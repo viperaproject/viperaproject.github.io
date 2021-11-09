@@ -95,6 +95,18 @@ defaults:
       layout: post
       share: true
 
+# Front Matter Defaults
+defaults:
+  # Recipe defaults
+  - scope:
+      path: "_languages"
+      type: languages
+    values:
+      layout: post
+      comments: true
+      share: true
+
+
 # Collections
 collections:
   languages:

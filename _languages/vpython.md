@@ -1,5 +1,5 @@
 ---
-title: "vPython"
+# title: "vPython"
 image: 
   path: /images/vPython-scripts.png
   thumbnail: /images/vPython-v1-thumbnail.png
