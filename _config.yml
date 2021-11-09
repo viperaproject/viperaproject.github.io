@@ -102,17 +102,17 @@ defaults:
       path: "_languages"
       type: languages
     values:
-      layout: page
-      comments: true
-      share: true
+      layout: post
+      comments: false
+      share: false
   # DevZone defaults
   - scope:
       path: "_devzone"
       type: devzone
     values:
-      layout: page
-      comments: true
-      share: true
+      layout: post
+      comments: false
+      share: false
 
 # Collections
 collections:
