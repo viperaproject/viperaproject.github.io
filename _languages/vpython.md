@@ -1,8 +1,8 @@
 ---
 title: "vPython"
 image: 
-  path: /images/vPython-v1.jpg
-  thumbnail: /images/vPython-v1.jpg
+  path: /images/vPython-v1.png
+  thumbnail: /images/vPython-v1.png
   caption: "vPython logo"
 ---
 
