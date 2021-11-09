@@ -102,7 +102,7 @@ defaults:
       path: "_languages"
       type: languages
     values:
-      layout: post
+      layout: page
       comments: true
       share: true
   # DevZone defaults
@@ -110,7 +110,7 @@ defaults:
       path: "_devzone"
       type: devzone
     values:
-      layout: post
+      layout: page
       comments: true
       share: true
 
