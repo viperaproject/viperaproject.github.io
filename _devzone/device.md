@@ -1,9 +1,9 @@
 ---
-#title: "Adding a new device"
+title: "Adding a new device"
 image: 
-  # path: /images/vPython-scripts.png
-  thumbnail: /images/Devices-thumbnail.png
+  path: /images/category-whitespace.png
+  thumbnail: /images/category-thumbnail.png
   # caption: "vPython scripts"
 ---
-# Adding a new device
+
 Here we will describe how to add support for new device.
