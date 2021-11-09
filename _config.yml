@@ -126,7 +126,7 @@ collections:
 
 # Site Author
 author: 
-  name: The Vipera Team
+  # name: The Vipera Team
   picture: /images/vipera-team.png
   email: 
   twitter:
