@@ -1,5 +1,5 @@
 ---
-title: Languages
+title: Programming languages
 layout: collection
 permalink: /languages/
 collection: languages
