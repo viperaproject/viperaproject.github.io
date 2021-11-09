@@ -43,7 +43,7 @@ disqus:
   shortname: # Disqus shortname, e.g. "my_disqus_shortname"
 twitter:
   username: # site's Twitter username, e.g. "mmistakes"
-copyright: EPCC, University of Edinburgh
+copyright: Copyright &copy; EPCC, University of Edinburgh 2021 
 
 # Liquid
 liquid:
