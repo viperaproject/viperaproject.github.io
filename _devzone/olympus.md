@@ -64,8 +64,39 @@ static RefString olygenAssign(ASTtarget *target, ASTexpression *node) {
 }
 ```
 
-The key point to note here is that all generators return a `RefString` which is a _reference-counted_ string to allow **Olympus** to manage memory more efficiently. The framework provides a number of functions to create, concatenate and free `RefStrings`. The **Olympus** `ASTtarget` structure includes a large buffer `target->line` to allow generators to use standard C string handling library functions. The above generator example also shows a number of _convenience_ macros to access elements of the AST e.g. `RHS()`, `IS_ARRAY()` and `OFFSET()`. 
+A key point to note here is that all generators return a `RefString` which is a _reference-counted_ string to allow **Olympus** to manage memory more efficiently. The framework provides a number of functions to create, concatenate and free `RefStrings`. The **Olympus** `ASTtarget` structure includes a large buffer `target->line` to allow generators to use standard C string handling library functions. The above generator example also shows a number of _convenience_ macros to access elements of the AST e.g. `RHS()`, `IS_ARRAY()` and `OFFSET()`. 
 > NOTE: These convenience macros should be used in preference to accessing the `ASTexpression` structure fields directly to allow the underlying implementation to be changed without requiring updates to generator functions etc.
+
+Whilst **Olympus** will traverse the AST via the `generateCode()` function, the generators need to be aware of the AST structure as they may need to traverse the sub-nodes differently in order to generate the correct code. For example, the `olygen` and `dotgen` code generators process the `program` node differently as **Olympus** abstract machine code requires that all the functions are declared at the start of the main code file and that the function declarations themselves are placed in the separate functions code file. However, rather than calling generator functions directly, the code generator should pass control back to **Olympus** by calling the `generateCode()` function to process sub-nodes, as shown in the example above. Generally, `ASTexpression` nodes have a left-hand and right-hand side sub nodes (accesible via the `LHS()` and `RHS()` macros), with specialised nodes such as AST_LAMBDA, AST_WHILE etc. having specific `value` structures as shown in the definition of `ASTexpression` below: 
+
+```c
+typedef struct expression {
+  ASToperation op;
+  ASTtype type;
+  char *name;
+  ASTid id;
+  ASTlevel level;
+  ASToffset offset;
+  struct expression *parent;
+  ASTcount referenced;
+  struct expression *next;
+  union {
+    AST_TYPES
+    struct array {struct expression **initialisers, *repeat; ASTcount initc;} Array;
+    struct indexes {struct expression **indexes; ASTcount indexc;} Indexes;
+    struct expr {struct expression *lhs, *rhs;} Expr;
+    struct CaseStatement {struct expression **conditions, *dflt; ASTcount condc;} Case;  
+    struct lambda {struct expression **args, *body, *variants; ASTcount argc, size;} Lambda; 
+    struct beta {struct expression **args, *func; ASTcount argc; ASTboolean recursive;} Beta; 
+    struct ForStatement {struct expression *iterator, *list, *block; ASTcount size;} For;
+    struct program {struct expression *functions; ASTcount fcount, size;} Program;
+  } value;  
+} ASTexpression;
+```
+The `type` and `op` fields of `ASTexpression` store the node's type (`AST_INTEGER`, `AST_REAL`, `AST_STRING`, `AST_COMPLEX` etc.) and the operation (`AST_ADD`, `AST_ASSIGNMENT`, `AST_WHILE`, `AST_LAMBDA` etc.), respectively. For example, the expression `5 + 6` has a type[^arrays] of `AST_INTEGER` and an operation of `AST_ADD` with a `LHS` value of `5` and a `RHS` value of `6`. 
+[^arrays]: Arrays are encoded within the `ASTexpression` `type` field supported by the the `SET_ARRAY()`, `IS_ARRAY()` and `GET_TYPE()` macros.
+
+The **Olympus** compiler will build the AST by appending new nodes to the current node's `next` field. Generally, _statements_ will have `next` nodes but `expressions` will not i.e. AST_ASSIGNMENT nodes will likely have a `next` node but AST_ADD nodes will not. 
 
 # Abstract Machine
 The **Olympus** abstract machine consists of a series of C macros, coupled with runtime functions that include memory management. The abstract machine, as the name suggests, models a machine designed to support dynamic object-oriented programming languages with features such as first-class and anonymous functions (_lambdas_). **Olympus** has been specifically designed to support scientific kernels on micro-core devices with extremely limited on-chip memory (c. 32KB). Therefore, dynamic type checking has been eliminated as far as possible by the _type inferencing_ performed by the compiler framework. 
