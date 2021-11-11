@@ -8,6 +8,7 @@ image:
 
 Adding a new programming language to **Vipera** can be as easy as adding a new parser to the **Olympus** native code generation framework. If additional languages features over and above those provided by **Olympus** are required, these can be easily added to the framework. For example, new types can be added to the _Abstract Syntax Tree_ (AST), along with their supporting code generation functions. 
 
+# Simple expressions
 An easy way to start is to look at the **vPython** parser defined in the `vpython.y` [Bison parser generator](https://www.gnu.org/software/bison/) grammar file. Here, you will see how the grammar rules map to the functions defined in `vpython.c` that create the respective AST nodes. For example, the following **Bison** grammar file snippet for **vPython** calls the `appendWhileStatement()` function declared in `vpython.h`:
 
 ```python
@@ -53,7 +54,8 @@ ASTexpression* createGeqExpression(ASTexpression* expression1, ASTexpression* ex
 }
 ```
 
-More complex grammar rules have specific AST node types and creation functions. For example, the `if then else` statement:
+# More complex expressions
+More complex expression types have specific AST node types and creation functions. For example, the `if: ... else:` statement:
 
 ```python
 # From vpython.y grammar file
@@ -73,9 +75,10 @@ ASTexpression* appendIfElseStatement(ASTexpression* expressionContainer,
 }
 ```
 
-Here, we create a `AST_CASE` node via the **Olympus** `ast_makeCaseClause()` function, which takes a list (stack) of _conditional expressions_ and a _default_ statement. For **vPython** we only create `if` /  `else` chains as **Python** does not support `case` statements but we use the **Olympus** `case` support with a single condition and a default statement as the `else` clause.
+Here, we create a `AST_CASE` node via the **Olympus** `ast_makeCaseClause()` function, which takes a list (stack) of _conditional expressions_ and a _default_ statement. For **vPython** we only create `if: ... else:` chains as **Python** does not support `case` statements but we use the **Olympus** `case` support with a single condition and a default statement as the `else` clause.
 
-In the case of **vPython** the AST nodes are traversed to perform _dynamic type inferencing_ in order to determine the type of a variable. The type inferencer also determines the types of the function arguments and return values, creating _polymorphic_ variants of functions, as required. This enables the generation of optimised _type frozen_ native **Olympus** abstract machine code. In essence, the dynamically-typed **vPython** variable types are _frozen_ until they change type. This removes the requirement to dynamically type check variables and function dispatch at runtime, greatly increasing the performance of compiled codes. 
+# Typing the AST
+In the case of **vPython** the AST nodes are traversed to perform _dynamic type inferencing_ in order to determine the type of a variable. The type inferencer also determines the types of the function arguments and return values, creating _polymorphic_ variants of functions, as required. This enables the generation of optimised _type frozen_ native **Olympus** abstract machine code. In essence, the dynamically-typed **vPython** variable types are frozen until they change type. This removes the requirement to dynamically type check variables and function dispatch at runtime, greatly increasing the performance of compiled codes. 
 
 The **Olympus** compiler also performs a separate pass of the code for optimisation e.g. _constant folding_ and this can be extended, as required.
  
