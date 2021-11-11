@@ -29,7 +29,8 @@ figure.highlight {
 
 .highlight table {
   margin-bottom: 0;
-  font-size: 1rem;
+  /* font-size: 1rem; */
+  font-size: 85%;
   border: 0;
 
   td {
@@ -57,7 +58,6 @@ figure.highlight {
 }
 
 .highlight pre {
-  font-size: 85%;
   width: 100%;
 }
 
