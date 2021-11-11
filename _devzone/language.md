@@ -11,7 +11,7 @@ Adding a new programming language to **Vipera** can be as easy as adding a new p
 An easy way to start is to look at the **vPython** parser defined in the `vpython.y` [Bison parser generator](https://www.gnu.org/software/bison/) grammar file. Here, you will see how the grammar rules map to the functions defined in `vpython.c` that create the respective AST nodes. For example, the following **Bison** grammar file snippet for **vPython** calls the `appendWhileStatement()` function declared in `vpython.h`:
 
 ```Bison
-       | WHILE expression COLON codeblock { $$=appendWhileStatement($2, $4); } 
+    | WHILE expression COLON codeblock { $$=appendWhileStatement($2, $4); } 
 ```
 The `appendWhileStatement()` function is simply defined in `vpython.c` as follows:
 
@@ -51,18 +51,18 @@ ASTexpression* createGeqExpression(ASTexpression* expression1, ASTexpression* ex
 
 More complex grammar rules have specific AST node types and creation functions. For example, 
 ```Bison
-        | IF expression COLON codeblock ELSE COLON codeblock { $$=appendIfElseStatement($2, $4, $7); }
+    | IF expression COLON codeblock ELSE COLON codeblock { $$=appendIfElseStatement($2, $4, $7); }
 ```
 
 ```c
 ASTexpression* appendIfElseStatement(ASTexpression* expressionContainer, 
                                      ASTexpression* thenBlock, 
                                      ASTexpression* elseBlock) {
-	ASTstack conditions;
+    ASTstack conditions;
 
-	INIT_STACK(conditions);
-	PUSH(conditions, ast_makeExpression(AST_CONDITION, expressionContainer, thenBlock)); 
-	return ast_makeCaseClause(&conditions, elseBlock);
+    INIT_STACK(conditions);
+    PUSH(conditions, ast_makeExpression(AST_CONDITION, expressionContainer, thenBlock)); 
+    return ast_makeCaseClause(&conditions, elseBlock);
 }
 ```
 
