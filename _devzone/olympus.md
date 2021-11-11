@@ -17,28 +17,28 @@ The **Olympus** compiler framework plug-in architecture allows key components to
 The code generator plug-ins consist of a set of functions that generate code from specific AST node types. These functions are defined for each code generation _target_ and **Olympus** will generate and traverse the AST, applying each function as required.  Each generator is assigned to a specific function pointer within an `ASTtarget` structure, which is then used by **Olympus** during the code generation phase. The _registration_ of the generators is performed by the target initialisation function e.g. `ast_newOlympusTarget(void)`. The following code snippet from the **Olympus** abstract machine target initialisation function shows the registration of each of the generator functions and the `setFilenames` function used by **Olympus** to create the relevant files for the specific target. For example, for **Olympus** abstract machine code, the `<program name>_oly_main.c` and `<program name>_oly_functions.c` files will be created; the former file contains the main program code and the latter file contains the function code.
 
 ```c
-  target->type = OLYMPUS_CODE;
-  target->setFilenames = olygenSetFilenames;
+target->type = OLYMPUS_CODE;
+target->setFilenames = olygenSetFilenames;
 
-  target->generators.Program = olygenProgram;
-  target->generators.Declaration = olygenDecl;
-  target->generators.Id = olygenId;
-  target->generators.Literal = olygenLiteral;
-  target->generators.Assignment = olygenAssign;
-  target->generators.Lambda = olygenLambda;
-  target->generators.Beta = olygenBeta;  
-  target->generators.Case = olygenCase;
-  target->generators.Condition = olygenCondition;
-  target->generators.While = olygenWhile;
-  target->generators.For = olygenFor;
-  target->generators.Return = olygenReturn;
-  target->generators.Array = olygenArray;
-  target->generators.ArrayElementIndex = olygenArrayElementIndex;  
-  target->generators.ArrayElementUpdate = olygenArrayElementUpdate;  
-  target->generators.Increment = olygenIncrement;
-  target->generators.Decrement = olygenDecrement;  
-  target->generators.Arithmetic = olygenArithmetic;
-  target->generators.Expression = olygenExpression;
+target->generators.Program = olygenProgram;
+target->generators.Declaration = olygenDecl;
+target->generators.Id = olygenId;
+target->generators.Literal = olygenLiteral;
+target->generators.Assignment = olygenAssign;
+target->generators.Lambda = olygenLambda;
+target->generators.Beta = olygenBeta;  
+target->generators.Case = olygenCase;
+target->generators.Condition = olygenCondition;
+target->generators.While = olygenWhile;
+target->generators.For = olygenFor;
+target->generators.Return = olygenReturn;
+target->generators.Array = olygenArray;
+target->generators.ArrayElementIndex = olygenArrayElementIndex;  
+target->generators.ArrayElementUpdate = olygenArrayElementUpdate;  
+target->generators.Increment = olygenIncrement;
+target->generators.Decrement = olygenDecrement;  
+target->generators.Arithmetic = olygenArithmetic;
+target->generators.Expression = olygenExpression;
 ```
 
 Each _generator_ has the following function signature:
@@ -54,8 +54,10 @@ static RefString olygenAssign(ASTtarget *target, ASTexpression *node) {
   RefString rhsString = generateCode(target, RHS(node));
 
   sprintf(target->line,"ST%s(ADDRF(%d,%d),%s);\n",
-    (IS_ARRAY(LHS(node)) ? "A" : olygenGetTypeName(TYPE(LHS(node)), AST_INITIAL)),
-    LEVEL(LHS(node)), OFFSET(LHS(node)), getRefStringChars(rhsString));  
+    (IS_ARRAY(LHS(node)) ? "A" : 
+        olygenGetTypeName(TYPE(LHS(node)), AST_INITIAL)),
+    LEVEL(LHS(node)), OFFSET(LHS(node)), 
+    getRefStringChars(rhsString));  
     
   freeRefString(rhsString);
   
