@@ -11,11 +11,13 @@ Adding a new programming language to **Vipera** can be as easy as adding a new p
 An easy way to start is to look at the **vPython** parser defined in the `vpython.y` [Bison parser generator](https://www.gnu.org/software/bison/) grammar file. Here, you will see how the grammar rules map to the functions defined in `vpython.c` that create the respective AST nodes. For example, the following **Bison** grammar file snippet for **vPython** calls the `appendWhileStatement()` function declared in `vpython.h`:
 
 ```python
+# From vpython.y grammar file
 | WHILE expression COLON codeblock { $$=appendWhileStatement($2, $4); } 
 ```
 The `appendWhileStatement()` function is simply defined in `vpython.c` as follows:
 
 ```c
+/* From vpython.c */
 ASTexpression* appendWhileStatement(ASTexpression* expression, ASTexpression* block) {
 	return ast_makeExpression(AST_WHILE, expression, block);
 }
@@ -23,6 +25,7 @@ ASTexpression* appendWhileStatement(ASTexpression* expression, ASTexpression* bl
 As we can see, it just calls the **Olympus** compiler framework function `ast_makeExpression()` with the _operation_ `AST_WHILE`, the test `expression` and the block / body of the loop. Relational expressions are created in a similar manner, with the left-hand side `expression1` and right-hand side `expression2`:
 
 ```python
+# From vpython.y grammar file
 relational_expression
         : additive_expression { $$=$1; }
         | relational_expression GT additive_expression { $$=createGtExpression($1, $3); }
@@ -32,6 +35,7 @@ relational_expression
 ```
 
 ```c
+/* From vpython.c */
 ASTexpression* createGtExpression(ASTexpression* expression1, ASTexpression* expression2) {
 	return createExpression(AST_GT, expression1, expression2);
 }
@@ -52,10 +56,12 @@ ASTexpression* createGeqExpression(ASTexpression* expression1, ASTexpression* ex
 More complex grammar rules have specific AST node types and creation functions. For example, the `if then else` statement:
 
 ```python
+# From vpython.y grammar file
 | IF expression COLON codeblock ELSE COLON codeblock { $$=appendIfElseStatement($2, $4, $7); }
 ```
 
 ```c
+/* From vpython.c */
 ASTexpression* appendIfElseStatement(ASTexpression* expressionContainer, 
                                      ASTexpression* thenBlock, 
                                      ASTexpression* elseBlock) {
