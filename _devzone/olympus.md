@@ -93,7 +93,7 @@ typedef struct expression {
   } value;  
 } ASTexpression;
 ```
-The `type` and `op` fields of `ASTexpression` store the node's type (`AST_INTEGER`, `AST_REAL`, `AST_STRING`, `AST_COMPLEX` etc.) and the operation (`AST_ADD`, `AST_ASSIGNMENT`, `AST_WHILE`, `AST_LAMBDA` etc.), respectively. For example, the expression `5 + 6` has a type[^arrays] of `AST_INTEGER` and an operation of `AST_ADD` with a `LHS` value of `5` and a `RHS` value of `6`. 
+The `type` and `op` fields of `ASTexpression` store the node's type (`AST_INTEGER`, `AST_REAL`, `AST_STRING`, `AST_COMPLEX` etc.) and the operation (`AST_ADD`, `AST_ASSIGNMENT`, `AST_WHILE`, `AST_LAMBDA` etc.), respectively. For example, the expression `5 + 6` has a type[^arrays] of `AST_INTEGER` and an operation of `AST_ADD` with a `LHS()` value of `5` and a `RHS()` value of `6`. 
 
 The **Olympus** compiler will build the AST by appending new nodes to the current node's `next` field. Generally, _statements_ will have `next` nodes but `expressions` will not i.e. AST_ASSIGNMENT nodes will likely have a `next` node but AST_ADD nodes will not. 
 
