@@ -65,7 +65,7 @@ static RefString olygenAssign(ASTtarget *target, ASTexpression *node) {
 }
 ```
 
-The key point to note here is that all generators return a `RefString` which is a _reference-counted_ string to allow **Olympus** to manage memory more efficiently. The framework provides a number of functions to create, concatenate and free `RefStrings`. The **Olympus** `ASTtarget` structure includes a large buffer `target->line` to allow generators to use standard C string handling library functions. The above generator example, also shows a number of _convenience_ macros to access elements of the AST e.g. `RHS()`, `IS_ARRAY()` and `OFFSET()`. 
+The key point to note here is that all generators return a `RefString` which is a _reference-counted_ string to allow **Olympus** to manage memory more efficiently. The framework provides a number of functions to create, concatenate and free `RefStrings`. The **Olympus** `ASTtarget` structure includes a large buffer `target->line` to allow generators to use standard C string handling library functions. The above generator example also shows a number of _convenience_ macros to access elements of the AST e.g. `RHS()`, `IS_ARRAY()` and `OFFSET()`. 
 > NOTE: These convenience macros should be used in preference to accessing the `ASTexpression` structure fields directly to allow the underlying implementation to be changed without requiring updates to generator functions etc.
 
 # Abstract Machine
@@ -76,4 +76,4 @@ The **Olympus** abstract machine consists of a series of C macros, coupled with 
 
 On the device, the **Olympus** memory map consists of the local on-chip RAM (32KB on the Adapteva Epiphany-III, 64KB on the Xilinx MicroBlaze and up to 128KB on the RISC-V), the shared memory on the host (32MB) and the external memory of the on-host **CPython** heap (up to 1GB on the Adapteva Parallella). By default, all _compound_ object[^objects] types (lists, complex numbers etc.) reside in the in-core _local heap_ but there are options to place objects in the memory of other on-chip cores (not shown on the diagram for clarity), the on-host _shared_ and _external_ heaps. The **Vipera** framework provides the underlying communications functions and module to support access to objects in the **CPython** heap on the host. The **Olympus** addressing model also allows compound objects to be placed on the _stack_, increasing performance by reducing the memory allocation overheads associated with allocating objects in the heap.  
 
-[^objects]: We will refer to all variable types (integers, floating point, strings, lists etc.) as _objects_. 
+[^objects]: We will refer to all variables (integers, floating point, strings, lists etc.) as _objects_. 
