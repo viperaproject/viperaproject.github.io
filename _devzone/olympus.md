@@ -63,7 +63,7 @@ static RefString olygenAssign(ASTtarget *target, ASTexpression *node) {
 }
 ```
 
-The key point to note here is that all generators return a `RefString` which is a _reference-counted_ string to allow **Olympus** to manage memory more efficiently. The framework provides a number of functions to create, concatenate and free `RefString`s. The **Olympus** `ASTtarget` structure includes a large buffer `target->line` to allow generators to use standard C string handling library functions to be used. The above generator example, also shows a number of _convenience_ macros to access elements of the AST e.g. `RHS()`, `IS_ARRAY()` and `OFFSET()`. 
+The key point to note here is that all generators return a `RefString` which is a _reference-counted_ string to allow **Olympus** to manage memory more efficiently. The framework provides a number of functions to create, concatenate and free `RefStrings`. The **Olympus** `ASTtarget` structure includes a large buffer `target->line` to allow generators to use standard C string handling library functions. The above generator example, also shows a number of _convenience_ macros to access elements of the AST e.g. `RHS()`, `IS_ARRAY()` and `OFFSET()`. 
 > NOTE: These convenience macros should be used in preference to accessing the `ASTexpression` structure fields directly to allow the underlying implementation to be changed without requiring updates to generator functions etc.
 
 # Abstract Machine
