@@ -23,7 +23,6 @@ figure.highlight {
   > pre,
   pre.highlight {
     margin: 0;
-    font-size: 85%;
     padding: 1em;
   }
 }
@@ -58,6 +57,7 @@ figure.highlight {
 }
 
 .highlight pre {
+  font-size: 85%;
   width: 100%;
 }
 
