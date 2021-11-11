@@ -94,7 +94,6 @@ typedef struct expression {
 } ASTexpression;
 ```
 The `type` and `op` fields of `ASTexpression` store the node's type (`AST_INTEGER`, `AST_REAL`, `AST_STRING`, `AST_COMPLEX` etc.) and the operation (`AST_ADD`, `AST_ASSIGNMENT`, `AST_WHILE`, `AST_LAMBDA` etc.), respectively. For example, the expression `5 + 6` has a type[^arrays] of `AST_INTEGER` and an operation of `AST_ADD` with a `LHS` value of `5` and a `RHS` value of `6`. 
-[^arrays]: Arrays are encoded within the `ASTexpression` `type` field supported by the the `SET_ARRAY()`, `IS_ARRAY()` and `GET_TYPE()` macros.
 
 The **Olympus** compiler will build the AST by appending new nodes to the current node's `next` field. Generally, _statements_ will have `next` nodes but `expressions` will not i.e. AST_ASSIGNMENT nodes will likely have a `next` node but AST_ADD nodes will not. 
 
@@ -106,4 +105,5 @@ The **Olympus** abstract machine consists of a series of C macros, coupled with 
 
 On the device, the **Olympus** memory map consists of the local on-chip RAM (32KB on the Adapteva Epiphany-III, 64KB on the Xilinx MicroBlaze and up to 128KB on the RISC-V), the shared memory on the host (32MB) and the external memory of the on-host **CPython** heap (up to 1GB on the Adapteva Parallella). By default, all _compound_ object[^objects] types (lists, complex numbers etc.) reside in the in-core _local heap_ but there are options to place objects in the memory of other on-chip cores (not shown on the diagram for clarity), the on-host _shared_ and _external_ heaps. The **Vipera** framework provides the underlying communications functions and module to support access to objects in the **CPython** heap on the host. The **Olympus** addressing model also allows compound objects to be placed on the _stack_, increasing performance by reducing the memory allocation overheads associated with allocating objects in the heap.  
 
+[^arrays]: Arrays are encoded within the `ASTexpression` `type` field supported by the the `SET_ARRAY()`, `IS_ARRAY()` and `GET_TYPE()` macros.
 [^objects]: We will refer to all variables (integers, floating point, strings, lists etc.) as _objects_. 
