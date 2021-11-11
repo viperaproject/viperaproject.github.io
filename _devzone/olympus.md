@@ -54,8 +54,7 @@ static RefString olygenAssign(ASTtarget *target, ASTexpression *node) {
   RefString rhsString = generateCode(target, RHS(node));
 
   sprintf(target->line,"ST%s(ADDRF(%d,%d),%s);\n",
-    (IS_ARRAY(LHS(node)) ? "A" : 
-        olygenGetTypeName(TYPE(LHS(node)), AST_INITIAL)),
+    (IS_ARRAY(LHS(node)) ? "A" : olygenGetTypeName(TYPE(LHS(node)), AST_INITIAL)),
     LEVEL(LHS(node)), OFFSET(LHS(node)), 
     getRefStringChars(rhsString));  
     
