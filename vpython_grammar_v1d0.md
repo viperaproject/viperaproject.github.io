@@ -1,4 +1,189 @@
-  ::-moz-selection { color: #FFFFFF; background: #141414; } ::selection { color: #FFFFFF; background: #141414; } .ebnf a, .grammar a { text-decoration: none; } .ebnf a:hover, .grammar a:hover { color: #0F0F0F; text-decoration: underline; } .signature { color: #4D4D4D; font-size: 11px; text-align: right; } body { font: normal 12px Verdana, sans-serif; color: #141414; background: #FFFFFF; } a:link, a:visited { color: #141414; } a:link.signature, a:visited.signature { color: #4D4D4D; } a.button, #tabs li a { padding: 0.25em 0.5em; border: 1px solid #4D4D4D; background: #E3E3E3; color: #4D4D4D; text-decoration: none; font-weight: bold; } a.button:hover, #tabs li a:hover { color: #0F0F0F; background: #F0F0F0; border-color: #0F0F0F; } #tabs { padding: 3px 10px; margin-left: 0; margin-top: 58px; border-bottom: 1px solid #141414; } #tabs li { list-style: none; margin-left: 5px; display: inline; } #tabs li a { border-bottom: 1px solid #141414; } #tabs li a.active { color: #141414; background: #FFFFFF; border-color: #141414; border-bottom: 1px solid #FFFFFF; outline: none; } #divs div { display: none; overflow:auto; } #divs div.active { display: block; } #text { border-color: #4D4D4D; background: #FFFFFF; color: #0F0F0F; } .small { vertical-align: top; text-align: right; font-size: 9px; font-weight: normal; line-height: 120%; } td.small { padding-top: 0px; } .hidden { visibility: hidden; } td:hover .hidden { visibility: visible; } div.download { display: none; background: #FFFFFF; position: absolute; right: 34px; top: 94px; padding: 10px; border: 1px dotted #141414; } #divs div.ebnf, .ebnf code { display: block; padding: 10px; background: #F0F0F0; width: 992px; } #divs div.grammar { display: block; padding-left: 16px; padding-top: 2px; padding-bottom: 2px; background: #F0F0F0; } pre { margin: 0px; } .ebnf div { padding-left: 13ch; text-indent: -13ch; } .ebnf code, .grammar code, textarea, pre { font:12px SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace; } tr.option-line td:first-child { text-align: right } tr.option-text td { padding-bottom: 10px } table.palette { border-top: 1px solid #0F0F0F; border-right: 1px solid #0F0F0F; margin-bottom: 4px } td.palette { border-bottom: 1px solid #0F0F0F; border-left: 1px solid #0F0F0F; } a.palette { padding: 2px 3px 2px 10px; text-decoration: none; } .palette { -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -o-user-select: none; -ms-user-select: none; } 
+  <style type="text/css">
+    ::-moz-selection
+    {
+      color: #FFFFFF;
+      background: #141414;
+    }
+    ::selection
+    {
+      color: #FFFFFF;
+      background: #141414;
+    }
+    .ebnf a, .grammar a
+    {
+      text-decoration: none;
+    }
+    .ebnf a:hover, .grammar a:hover
+    {
+      color: #0F0F0F;
+      text-decoration: underline;
+    }
+    .signature
+    {
+      color: #4D4D4D;
+      font-size: 11px;
+      text-align: right;
+    }
+    body
+    {
+      font: normal 12px Verdana, sans-serif;
+      color: #141414;
+      background: #FFFFFF;
+    }
+    a:link, a:visited
+    {
+      color: #141414;
+    }
+    a:link.signature, a:visited.signature
+    {
+      color: #4D4D4D;
+    }
+    a.button, #tabs li a
+    {
+      padding: 0.25em 0.5em;
+      border: 1px solid #4D4D4D;
+      background: #E3E3E3;
+      color: #4D4D4D;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    a.button:hover, #tabs li a:hover
+    {
+      color: #0F0F0F;
+      background: #F0F0F0;
+      border-color: #0F0F0F;
+    }
+    #tabs
+    {
+      padding: 3px 10px;
+      margin-left: 0;
+      margin-top: 58px;
+      border-bottom: 1px solid #141414;
+    }
+    #tabs li
+    {
+      list-style: none;
+      margin-left: 5px;
+      display: inline;
+    }
+    #tabs li a
+    {
+      border-bottom: 1px solid #141414;
+    }
+    #tabs li a.active
+    {
+      color: #141414;
+      background: #FFFFFF;
+      border-color: #141414;
+      border-bottom: 1px solid #FFFFFF;
+      outline: none;
+    }
+    #divs div
+    {
+      display: none;
+      overflow:auto;
+    }
+    #divs div.active
+    {
+      display: block;
+    }
+    #text
+    {
+      border-color: #4D4D4D;
+      background: #FFFFFF;
+      color: #0F0F0F;
+    }
+    .small
+    {
+      vertical-align: top;
+      text-align: right;
+      font-size: 9px;
+      font-weight: normal;
+      line-height: 120%;
+    }
+    td.small
+    {
+      padding-top: 0px;
+    }
+    .hidden
+    {
+      visibility: hidden;
+    }
+    td:hover .hidden
+    {
+      visibility: visible;
+    }
+    div.download
+    {
+      display: none;
+      background: #FFFFFF;
+      position: absolute;
+      right: 34px;
+      top: 94px;
+      padding: 10px;
+      border: 1px dotted #141414;
+    }
+    #divs div.ebnf, .ebnf code
+    {
+      display: block;
+      padding: 10px;
+      background: #F0F0F0;
+      width: 992px;
+    }
+    #divs div.grammar
+    {
+      display: block;
+      padding-left: 16px;
+      padding-top: 2px;
+      padding-bottom: 2px;
+      background: #F0F0F0;
+    }
+    pre
+    {
+      margin: 0px;
+    }
+    .ebnf div
+    {
+      padding-left: 13ch;
+      text-indent: -13ch;
+    }
+    .ebnf code, .grammar code, textarea, pre
+    {
+      font:12px SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+    }
+    tr.option-line td:first-child
+    {
+      text-align: right
+    }
+    tr.option-text td
+    {
+      padding-bottom: 10px
+    }
+    table.palette
+    {
+      border-top: 1px solid #0F0F0F;
+      border-right: 1px solid #0F0F0F;
+      margin-bottom: 4px
+    }
+    td.palette
+    {
+      border-bottom: 1px solid #0F0F0F;
+      border-left: 1px solid #0F0F0F;
+    }
+    a.palette
+    {
+      padding: 2px 3px 2px 10px;
+      text-decoration: none;
+    }
+    .palette
+    {
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -o-user-select: none;
+      -ms-user-select: none;
+    }
+  </style>
 
 program:
 
