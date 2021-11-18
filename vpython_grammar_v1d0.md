@@ -189,7 +189,7 @@ program:
 
 ![](images/vpython/program.png)
 
-[program](#program "program")  ::= [lines](#lines "lines"){.code}
+[program]{.code}(#program "program")  ::= [lines]{.code}(#lines "lines")
 
 no references
 
@@ -199,7 +199,7 @@ lines:
 
 ![](images/vpython/lines.png)
 
-[lines](#lines "lines")    ::= [line](#line "line")+{.ebnf.code}
+[lines](.ebnf.code}(#lines "lines")    ::= [line]{.ebnf.code}(#line "line")+
 
 
 referenced by:
