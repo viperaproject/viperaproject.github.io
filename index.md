@@ -1,14 +1,10 @@
 The **Vipera** framework is a compact, efficient and high-performance framework for delivering dynamic languages, such as **Python**, on micro-core architectures. 
 
-<p align="center">
-  <img src="/images/Olympus-components.png" alt="Olympus compiler framework components">
-</p>
+![Olympus compiler framework components](/images/Olympus-components.png){: .align-center}
 
 **Vipera** includes support for running dynamic languages in a _custom virtual machine_ and compilation to a _native code abstract machine_, both specifically designed for the tiny amounts of on-chip memory (32 – 64KB) found on micro-core devices. The **Olympus** native code generation framework includes a _plug-in_ compiler toolset and a compact runtime, supporting dynamic code loading on micro-core accelerators. 
 
-<p align="center">
-  <img src="images/vPython-scripts-thumbnail.png" alt="Example vPython scripts">
-</p>
+![Example vPython scripts](images/vPython-scripts-thumbnail.png){: .align-center}
 
 The **vPython** programming language, included with **Vipera**, leverages the framework to provide an easy to use, productive, parallel version of the **Python** programming language, specifically designed for micro-core accelerators. Programs can either be run under **vPython** _standalone_ on micro-core devices, or kernels can be _offloaded_ from within **CPython** scripts running on the host.
 
