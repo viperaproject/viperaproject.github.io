@@ -6,15 +6,15 @@ The **vPython** programming language, included with **Vipera**, leverages the fr
 
 # Key features:
 ## Portable 
-The **Vipera** framework is supported on a number of micro-core architectures, including: **RISC-V**, **Xilinx MicroBlaze** and **Adapteva Epiphany-III*. Written entirely in **C99**, **Vipera** can be ported to other architectures that support a standard C compiler such as **GCC** or **Clang**.
+The **Vipera** framework is supported on a number of micro-core architectures, including: **RISC-V**, **Xilinx MicroBlaze** and **Adapteva Epiphany-III**. Written entirely in **C99**, **Vipera** can be ported to other architectures that support a standard C compiler such as **GCC** or **Clang**.
 ## Compact 
 The **Vipera** native code abstract machine and virtual machine only require between **4KB** and **43KB** of code memory and **1-2KB** of data memory.
 ## Powerful 
-**Vipera** provides a rich set of support functions and communication primitives (point to point, broadcast, reductions, synchronisation etc.) to support parallel programming on micro-core devices.
+**Vipera** provides a rich set of support functions and communication primitives (point-to-point, broadcast, reductions, synchronisation etc.) to support parallel programming on micro-core devices.
 ## Fast 
 **Vipera**’s native code abstract machine approaches (>90%) native **C** performance for scientific kernels, greatly closing the performance gap between kernels written in dynamic languages and those hand-crafted in **C**. 
 
 # Free and Open Source
-The **Vipera** framework, including compiler, abstract and virtual machines, and runtime libraries are completely written in **C99** and available for use under the [BSD 3-clause license](https://opensource.org/licenses/BSD-3-Clause).
+The **Vipera** framework, including compiler, abstract and virtual machines, and runtime libraries are available for use under the [BSD 3-clause license](https://opensource.org/licenses/BSD-3-Clause).
 The **BSD Open Source license** allows you to use and modify **Vipera** for personal, commercial and educational use.
-**Vipera** is openly developed and the source code managed on **GitHub**.
+The **Vipera** source code is available on [**GitHub**](https://github.com/viperaproject).
