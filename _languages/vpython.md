@@ -2,7 +2,7 @@
 title: "vPython"
 image: 
   path: /images/category-whitespace.png
-  thumbnail: /images/vPython-v2-thumbnail.png
+  # thumbnail: /images/vPython-v2-thumbnail.png
   # caption: "vPython scripts"
 ---
 
