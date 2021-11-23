@@ -27,7 +27,7 @@
       {% if entry.excerpt %}
         {{ entry.excerpt | markdownify }}
       {% endif %}
-      [More...](#)
+      <br><a href="#">More...</a>
     </div>
   {% endunless %}
   {% if site.read_time or entry.date and page.layout != 'collection' %}
