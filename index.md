@@ -9,13 +9,13 @@ The **Vipera** framework is a compact, efficient and high-performance framework 
 The **vPython** programming language, included with **Vipera**, leverages the framework to provide an easy to use, productive, parallel version of the **Python** programming language, specifically designed for micro-core accelerators. Programs can either be run under **vPython** _standalone_ on micro-core devices, or kernels can be _offloaded_ from within **CPython** scripts running on the host.
 
 # Key features:
-## Portable ![Trolley ](/images/trolley.png){: width="48" .align-right }
+## Portable ![Trolley ](/images/trolley.png){: width="48" .align-center }
 The **Vipera** framework is supported on a number of micro-core architectures, including: **RISC-V**, **Xilinx MicroBlaze** and **Adapteva Epiphany-III**. Written entirely in **C99**, **Vipera** can be ported to other architectures that support a standard C compiler such as **GCC** or **Clang**.
-## Compact ![Paking box ](/images/packet.png){: width="48" .align-right }
+## Compact ![Paking box ](/images/packet.png){: width="48" .align-center }
 The **Vipera** native code abstract machine and virtual machine only require between **4KB** and **43KB** of code memory and **1-2KB** of data memory.
-## Powerful ![Strong arm ](/images/body-building.png){: width="48" .align-right }
+## Powerful ![Strong arm ](/images/body-building.png){: width="48" .align-center }
 **Vipera** provides a rich set of support functions and communication primitives (point-to-point, broadcast, reductions, synchronisation etc.) to support parallel programming on micro-core devices.
-## Fast ![Stopwatch ](/images/deadline.png){: width="48" .align-right }
+## Fast ![Stopwatch ](/images/deadline.png){: width="48" .align-center }
 **Vipera**’s native code abstract machine approaches (>90%) native **C** performance for scientific kernels, greatly closing the performance gap between kernels written in dynamic languages and those hand-crafted in **C**. 
 
 # Free and Open Source
