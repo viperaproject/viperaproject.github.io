@@ -1,7 +1,3 @@
----
-copyright: Copyright &copy; 2021 EPCC, University of Edinburgh. Icons made by <a href="https://www.flaticon.com/authors/alkhalifi-design" title="alkhalifi design">alkhalifi design</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
----
-
 The **Vipera** framework is a compact, efficient and high-performance framework for delivering dynamic languages, such as **Python**, on micro-core architectures. 
 
 ![Olympus compiler framework components](/images/Olympus-components.png){: .align-center}
@@ -13,13 +9,13 @@ The **Vipera** framework is a compact, efficient and high-performance framework 
 The **vPython** programming language, included with **Vipera**, leverages the framework to provide an easy to use, productive, parallel version of the **Python** programming language, specifically designed for micro-core accelerators. Programs can either be run under **vPython** _standalone_ on micro-core devices, or kernels can be _offloaded_ from within **CPython** scripts running on the host.
 
 # Key features:
-## Portable ![Trolley ](/images/trolley.png){: width="48" }
+## Portable ![Trolley ](/images/trolley.png){: width="48" .align-right }
 The **Vipera** framework is supported on a number of micro-core architectures, including: **RISC-V**, **Xilinx MicroBlaze** and **Adapteva Epiphany-III**. Written entirely in **C99**, **Vipera** can be ported to other architectures that support a standard C compiler such as **GCC** or **Clang**.
-## Compact ![Bonsai tree ](/images/bonsai.png){: width="48" }
+## Compact ![Paking box ](/images/packet.png){: width="48" .align-right }
 The **Vipera** native code abstract machine and virtual machine only require between **4KB** and **43KB** of code memory and **1-2KB** of data memory.
-## Powerful ![Strong arm ](/images/body-building.png){: width="48" }
+## Powerful ![Strong arm ](/images/body-building.png){: width="48" .align-right }
 **Vipera** provides a rich set of support functions and communication primitives (point-to-point, broadcast, reductions, synchronisation etc.) to support parallel programming on micro-core devices.
-## Fast ![Stopwatch ](/images/deadline.png){: width="48" }
+## Fast ![Stopwatch ](/images/deadline.png){: width="48" .align-right }
 **Vipera**’s native code abstract machine approaches (>90%) native **C** performance for scientific kernels, greatly closing the performance gap between kernels written in dynamic languages and those hand-crafted in **C**. 
 
 # Free and Open Source
