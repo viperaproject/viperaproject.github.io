@@ -6,8 +6,6 @@ image:
   # caption: "vPython scripts"
 icon: /images/processor.png
 icon_alt: Processor icon
-author:
-  picture: /images/processor.png
 ---
 
 The **Vipera** framework significantly reduces the effort required to add support for a new micro-core architecture. 
