@@ -17,7 +17,7 @@ The **Vipera** native code abstract machine and virtual machine only require bet
 **Vipera** provides a rich set of support functions and communication primitives (point-to-point, broadcast, reductions, synchronisation etc.) to support parallel programming on micro-core devices.
 ## Fast ![Stopwatch ](/images/deadline.png){: width="40" }
 **Vipera**’s native code abstract machine approaches (>90%) native **C** performance for scientific kernels, greatly closing the performance gap between kernels written in dynamic languages and those hand-crafted in **C**. 
-## Free and Open Source ## Fast ![OSI logo ](/images/osi-logo-monochrome.png){: width="40" }
+## Free and Open Source ![OSI logo ](/images/osi-symbol-monochrome.png){: width="40" }
 The **Vipera** framework, including compiler, abstract and virtual machines, and runtime libraries are available for use under the [BSD 3-clause license](https://opensource.org/licenses/BSD-3-Clause).
 The **BSD Open Source license** allows you to use and modify **Vipera** for personal, commercial and educational use.
 The **Vipera** source code is available on [**GitHub**](https://github.com/viperaproject).
