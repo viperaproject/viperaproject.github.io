@@ -1,12 +1,12 @@
-The **Vipera** framework is a compact, efficient and high-performance framework for delivering dynamic languages, such as **Python**, on micro-core architectures. 
+**Vipera** is a compact, efficient and high-performance framework for delivering dynamic languages, such as **Python**, on micro-core architectures. 
 
 ![Olympus compiler framework components](/images/Olympus-components.png){: .align-center}
 
-**Vipera** includes support for running dynamic languages in a _custom virtual machine_ and compilation to a _native code abstract machine_, both specifically designed for the tiny amounts of on-chip memory (32 – 64KB) found on micro-core devices. The **Olympus** native code generation framework includes a _plug-in_ compiler toolset and a compact runtime, supporting dynamic code loading on micro-core accelerators. 
+The framework includes support for running dynamic languages in a _custom virtual machine_ and compilation to a _native code abstract machine_, both specifically designed for the tiny amounts of on-chip memory (32 – 64KB) found on micro-core devices. The **Olympus** native code generation framework includes a compiler toolset, with a _plug-in_ architecture, and a compact runtime that supports dynamic code loading on micro-core accelerators. 
 
 ![Example vPython scripts](images/vPython-scripts-thumbnail.png){: .align-center}
 
-The **vPython** programming language, included with **Vipera**, leverages the framework to provide an easy to use, productive, parallel version of the **Python** programming language, specifically designed for micro-core accelerators. Programs can either be run under **vPython** _standalone_ on micro-core devices, or kernels can be _offloaded_ from within **CPython** scripts running on the host.
+The **vPython** programming language, included with **Vipera**, leverages the framework to provide an easy to use, productive, parallel version of the **Python** programming language, specifically designed for micro-cores. **vPython** programs can either be run _standalone_ on micro-core devices, or functions within **CPython** applications running on the host can be _offloaded_ as _kernels_.
 
 # Key features:
 ## Portable ![Trolley ](/images/trolley.png){: width="48" }
@@ -16,7 +16,7 @@ The **Vipera** native code abstract machine and virtual machine only require bet
 ## Powerful ![Strong arm ](/images/body-building.png){: width="48" }
 **Vipera** provides a rich set of support functions and communication primitives (point-to-point, broadcast, reductions, synchronisation etc.) to support parallel programming on micro-core devices.
 ## Fast ![Stopwatch ](/images/deadline.png){: width="48" }
-**Vipera**’s native code abstract machine approaches (>90%) native **C** performance for scientific kernels, greatly closing the performance gap between kernels written in dynamic languages and those hand-crafted in **C**. 
+The **Olympus** native code abstract machine approaches (>90%) native **C** performance for scientific kernels, greatly closing the performance gap between kernels written in dynamic languages and those hand-crafted in **C**. 
 ## Free and Open Source ![OSI logo ](/images/osi-symbol-monochrome.png){: width="48" }
 The **Vipera** framework, including compiler, abstract and virtual machines, and runtime libraries are available for use under the [BSD 3-clause license](https://opensource.org/licenses/BSD-3-Clause).
 The **BSD Open Source license** allows you to use and modify **Vipera** for personal, commercial and educational use.
