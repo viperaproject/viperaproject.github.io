@@ -43,6 +43,11 @@ We can see that we have options to chose which cores will execute the code (_pla
 
 The code and data placement options, coupled with the specification of the number of cores used for execution on the device and host, provide a great deal of flexibility. For example, using the former, codes that are bigger than the available micro-core on-chip memory can still be run from the host shared memory, with the respective performance impact. Similarly, it is possible for codes to process data much larger than the on-chip memory by storing it in the shared memory area, whilst the code itself is executing from on-chip memory. Furthermore, it is possible to simulate bigger or smaller devices by running more processes (threads) on the host to simulate more cores, or to reduce the number of physical cores used in order to simulate a smaller device. 
 
+## Communications
+Over and above the implicit communications shown above, **vPython** provides a number of communications primitives that allow the implementation of sophisticated parallel code patterns. 
+### Point-to-point
+The `send()`, `recv()` and `sendrecv()` 
+
 ## Offloading vPython kernels within Python applications
 **vPython** also supports offloading kernel functions within the standard **CPython** interpreter running on the host. This method allows Python applications to utilise standard **Python** modules e.g. **Numpy**, whilst offloading functions to micro-core accelerator cores and managing the host / device communications implicitly. This is extremely easy to do, as the follwing example demonstrates:
 
@@ -58,4 +63,3 @@ print helloworld(10, 20)
 ```
 
 In this **Python** script, we can see that the `helloworld()` function has been marked for downloading and execution on the micro-core device by the `@offload` _decorator_. Note that the values `10` and `20` are sent to the device, and that the return value (`30`) is sent back to the host implicitly by **vPython**. This makes it trivial to take existing **Python** codes and mark specific functions as kernels for execution on the micro-core devices. Perhaps less obvious is that **vPython** also redirects I/O from the device to the host, peforming the underlying communications and I/O on the host transparently. This makes developing and debugging kernels for micro-cores using **vPython** significantly easier and more productive than using the provided **C**-based software development kits (SDKs) for most micro-core architectures.
-
