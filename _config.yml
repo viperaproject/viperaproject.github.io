@@ -44,7 +44,7 @@ disqus:
   shortname: # Disqus shortname, e.g. "my_disqus_shortname"
 twitter:
   username: # site's Twitter username, e.g. "mmistakes"
-copyright: Copyright &copy; 2021 EPCC, University of Edinburgh. <p>Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p><p>Icons made by <a href="https://www.flaticon.com/authors/alkhalifi-design" title="alkhalifi design">alkhalifi design</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></p>
+copyright: Copyright &copy; 2021 EPCC, University of Edinburgh. <br>Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.<br>Icons made by <a href="https://www.flaticon.com/authors/alkhalifi-design" title="alkhalifi design">alkhalifi design</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
 
 # Liquid
 liquid:
