@@ -25,7 +25,7 @@ image:
 | `taskfarm.py`   | Task farm management functions                                                              | 
 | `util.py`       | Miscellaneous utility functions                                                             |
 
-The `array.py` module provides native support for multi-dimensional arrays within **vPython**, delivering much faster data access for scientific kernels than the _vectors of vectors_ approach dictated by standard **Python** lists. The `memory.py` module allows programmers to finely tune the memory footprint of their codes, especially important in the extremely limited memory environment of micro-core devices. As the name suggests, the `parallel.py` module provides support for parallel programming, including _blocking_ and _non-blocking_ _poiny-to-point_ send functions, _broadcast_ and _reduction_ functions. This and the `taskfarm.py` module allow applications with sophisticated parallel programming patterns to easily developed and deployed to micro-cores.
+The `array.py` module provides native support for multi-dimensional arrays within **vPython**, delivering much faster data access for scientific kernels than the _vectors of vectors_ approach dictated by standard **Python** lists. The `memory.py` module allows programmers to finely tune the memory footprint of their codes, especially important in the extremely limited memory environment of micro-core devices. As the name suggests, the `parallel.py` module provides support for parallel programming, including _blocking_ and _non-blocking_ _point-to-point_ send functions, _broadcast_ and _reduction_ functions. This and the `taskfarm.py` module allow applications with sophisticated parallel programming patterns to easily developed and deployed to micro-cores.
 
 ## Running vPython standalone
 When **vPython** is run _standalone_, the scripts are compiled and downloaded to the device for execution directly by the **vPython** environment, which controls execution and manages communications between the device cores and the host. Typing **vpython** on the host without any arguments provides the following information:
@@ -58,7 +58,8 @@ We can see that we have options to chose which cores will execute the code (_pla
 
 The code and data placement options, coupled with the specification of the number of cores used for execution on the device and host, provide a great deal of flexibility. For example, using the former, codes that are bigger than the available micro-core on-chip memory can still be run from the host shared memory, with the respective performance impact. Similarly, it is possible for codes to process data much larger than the on-chip memory by storing it in the shared memory area, whilst the code itself is executing from on-chip memory. Furthermore, it is possible to simulate bigger or smaller devices by running more processes (threads) on the host to simulate more cores, or to reduce the number of physical cores used in order to simulate a smaller device. 
 
-The following code listing illustrates a simple example, executed standalone on the micro-cores and launched from the command line on the host e.g. `vpython example.py`. In this example, each micro-core will generate a random integer between 0 and 100 and then perform a collective message passing reduction (`reduce`) to determine the maximum random number (due to the `max` operator), which is then displayed by each core.
+### Code examples
+The following code listing illustrates a simple example, executed standalone on the micro-cores and launched from the command line on the host e.g. `vpython example.py`. In this example, each micro-core will generate a random integer between 0 and 100 and then perform a collective message passing reduction (`reduce`) to determine the maximum random number (due to the `max` operator), which is then displayed by each core:
 
 ```python
 from parallel import reduce
@@ -68,13 +69,24 @@ a = reduce(randint(0,100), "max")
 print "The highest random number is " + str(a)
 ```
 
+The following example demonstrates the point-to-point `send()` and `recv()` _blocking_ communication functions, which means that the cores will not continue until they have either fully sent or fully received a value. Therefore, in order to prevent the cores from waiting forever, the send and receive calls should match i.e. a `send()` should always have a corresponding `recv()` call that _consumes_ the message. The functions take a _core ID_, which can be determined using the `coreid()` function as shown in the example. Here, core 0 sends the value `20` to core 1. Therefore, we must ensure that core 1 calls `recv()` to consume the message from core 0.
+
+```python
+import parallel
+
+if coreid()==0:
+  send(20, 1)
+elif coreid()==1:
+  print "Got value "+recv(0)+" from core 0"
+```
+
 The above approach allows simple parallel programming examples to be developed quickly and easily in order to learn the fundamental ideas behind parallelism, using a version of the popular **Python** programming language. With this in mind and due to the memory constraints of the target micro-core architectures, **vPython** implements a subset of Python 2.7, and was initially focussed around the imperative aspects of the code with features such as garbage collection. Over time, this has been extended to include other aspects of the **Python** language, although it still does not provide a complete implementation due to memory space limits. However, using **vPython** in anger, it was clear that there was potential for it to be developed to support _real-world_ applications on micro-cores. This required a more powerful approach to programmer interaction, as not all parts of an application are necessarily suited for offloading to micro-cores. Therefore, an approach where specific functions are marked for offloading as _kernels_ to the micro-cores was required, as described in the next section.
 
 ## Offloading vPython kernels within Python applications
 **vPython** also supports offloading kernel functions within the standard **CPython** interpreter running on the host. This method allows Python applications to utilise standard **Python** modules e.g. **Numpy**, whilst offloading functions to micro-core accelerator cores and managing the host / device communications implicitly. This is extremely easy to do, as the follwing example demonstrates:
 
 ```python
-from epython import offload
+from vpython import offload
 
 @offload
 def helloworld(a,b):
