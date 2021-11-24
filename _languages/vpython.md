@@ -14,16 +14,16 @@ image:
 ## Modules
 **vPython** provides a number of modules, including support for parallel programming:
 
-| Module          | Comment                                                                          |
-|-----------------|----------------------------------------------------------------------------------|
-| array.py        | Array creation / management functions, including: shape, copying and flattening  |
-| math.py         | Math functions, including: pow(), exp(), sin(), cos(), log(), ceil(), floor()    |
-| memory.py       | Memory management functions: free() and gc()                                     |
-| microblaze.py   | Xilinx PYNQ MicroBlaze GPIO and associated functions                             |
-| parallel.py     | Communications functions, including: coreid(), send(), recv(), bcast(), reduce() |
-| random.py       | Randomisation functions                                                          |
-| taskfarm.py     | Task farm management functions                                                   | 
-| util.py         | Miscellaneous utility functions                                                  |
+| Module            | Description                                                                      |
+|-------------------|----------------------------------------------------------------------------------|
+| **array.py**      | Array creation / management functions, including: shape, copying and flattening  |
+| **math.py**       | Math functions, including: pow(), exp(), sin(), cos(), log(), ceil(), floor()    |
+| **memory.py**     | Memory management functions: free() and gc()                                     |
+| **microblaze.py** | Xilinx PYNQ MicroBlaze GPIO and associated functions                             |
+| **parallel.py**   | Communications functions, including: coreid(), send(), recv(), bcast(), reduce() |
+| **random.py**     | Randomisation functions                                                          |
+| **taskfarm.py**   | Task farm management functions                                                   | 
+| **util.py**       | Miscellaneous utility functions                                                  |
 
 ## Running vPython standalone
 When **vPython** is run _standalone_, the scripts are compiled and downloaded to the device for execution directly by the **vPython** environment, which controls execution and manages communications between the device cores and the host. Typing **vpython** on the host without any arguments provides the following information:
