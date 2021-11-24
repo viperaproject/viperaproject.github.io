@@ -11,6 +11,19 @@ image:
 
 **vPython** enables Python programmers to easily offload specific kernels in their code onto micro-core accelerators, with the seamless transfer of code and data to the device, as well as the copying back of results from the device. As micro-core devices have very small memory spaces (around 32KB to 64KB), **Vipera** provides the ability to take advantage of the larger, albeit slower, external memories to support usable datasets on the devices, and abstracts over the low-level details required to transfer data on the different devices. 
 
+## Modules
+**vPython** provides a number of modules, including support for parallel programming:
+
+|Module           | Comment                                                                          |
+------------------------------------------------------------------------------------------------------
+| array.py        | Array creation / management functions, including: shape, copying and flattening  |
+| math.py         | Math functions, including: pow(), exp(), sin(), cos(), log(), ceil(), floor()    |
+| memory.py       | Memory management functions: free() and gc()                                     |
+| microblaze.py   | Xilinx PYNQ MicroBlaze GPIO and associated functions                             |
+| parallel.py     | Communications functions, including: coreid(), send(), recv(), bcast(), reduce() |
+| random.py       | Randomisation functions                                                          |
+| taskfarm.py     | Task farm management functions                                                   | 
+| util.py         | Miscellaneous utility functions                                                  |
 
 ## Running vPython standalone
 When **vPython** is run _standalone_, the scripts are compiled and downloaded to the device for execution directly by the **vPython** environment, which controls execution and manages communications between the device cores and the host. Typing **vpython** on the host without any arguments provides the following information:
