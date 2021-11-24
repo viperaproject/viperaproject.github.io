@@ -17,10 +17,10 @@ image:
 | Module            | Description                                                                      |
 |-------------------|----------------------------------------------------------------------------------|
 | **array.py**      | Array creation / management functions, including: shape, copying and flattening  |
-| **math.py**       | Math functions, including: pow(), exp(), sin(), cos(), log(), ceil(), floor()    |
-| **memory.py**     | Memory management functions: free() and gc()                                     |
+| **math.py**       | Math functions, including: `pow()`, `exp()`, `sin()`, `cos()`, `log()`, `ceil()`, `floor()`    |
+| **memory.py**     | Memory management functions: `free()` and `gc()`                                     |
 | **microblaze.py** | Xilinx PYNQ MicroBlaze GPIO and associated functions                             |
-| **parallel.py**   | Communications functions, including: coreid(), send(), recv(), bcast(), reduce() |
+| **parallel.py**   | Communications functions, including: `coreid()`, `send()`, `recv()`, `bcast()`, `reduce()` |
 | **random.py**     | Randomisation functions                                                          |
 | **taskfarm.py**   | Task farm management functions                                                   | 
 | **util.py**       | Miscellaneous utility functions                                                  |
