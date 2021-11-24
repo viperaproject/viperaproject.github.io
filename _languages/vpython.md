@@ -14,8 +14,8 @@ image:
 ## Modules
 **vPython** provides a number of modules, including support for parallel programming:
 
-|Module           | Comment                                                                          |
-------------------------------------------------------------------------------------------------------
+| Module          | Comment                                                                          |
+|-----------------|----------------------------------------------------------------------------------|
 | array.py        | Array creation / management functions, including: shape, copying and flattening  |
 | math.py         | Math functions, including: pow(), exp(), sin(), cos(), log(), ceil(), floor()    |
 | memory.py       | Memory management functions: free() and gc()                                     |
