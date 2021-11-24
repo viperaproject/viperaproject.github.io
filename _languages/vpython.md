@@ -1,5 +1,5 @@
 ---
-title: vPython parallel programming language
+title: vPython
 image: 
   path: /images/category-whitespace.png
   # thumbnail: /images/vPython-v2-thumbnail.png
