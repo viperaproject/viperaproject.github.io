@@ -1,5 +1,5 @@
 ---
-title: "vPython"
+title: vPython parallel programming language
 image: 
   path: /images/category-whitespace.png
   # thumbnail: /images/vPython-v2-thumbnail.png
@@ -10,6 +10,9 @@ image:
 **vPython** is a parallel implementation of the **Python** programming language specially designed for micro-core architectures, on top of the **Vipera** framework. **vPython** is development of the [**ePython**](https://github.com/mesham/epython) to include the execution of codes via both a tiny interpreter (less than 44KB) and native compilation. 
 
 **vPython** enables Python programmers to easily offload specific kernels in their code onto micro-core accelerators, with the seamless transfer of code and data to the device, as well as the copying back of results from the device. As micro-core devices have very small memory spaces (around 32KB to 64KB), **Vipera** provides the ability to take advantage of the larger, albeit slower, external memories to support usable datasets on the devices, and abstracts over the low-level details required to transfer data on the different devices. 
+
+## Installation
+TBC
 
 ## Modules
 **vPython** provides a number of modules, including support for parallel programming:
@@ -58,7 +61,7 @@ We can see that we have options to chose which cores will execute the code (_pla
 
 The code and data placement options, coupled with the specification of the number of cores used for execution on the device and host, provide a great deal of flexibility. For example, using the former, codes that are bigger than the available micro-core on-chip memory can still be run from the host shared memory, with the respective performance impact. Similarly, it is possible for codes to process data much larger than the on-chip memory by storing it in the shared memory area, whilst the code itself is executing from on-chip memory. Furthermore, it is possible to simulate bigger or smaller devices by running more processes (threads) on the host to simulate more cores, or to reduce the number of physical cores used in order to simulate a smaller device. 
 
-### Code examples
+### Examples
 The following code listing illustrates a simple example, executed standalone on the micro-cores and launched from the command line on the host e.g. `vpython example.py`. In this example, each micro-core will generate a random integer between 0 and 100 and then perform a collective message passing reduction (`reduce`) to determine the maximum random number (due to the `max` operator), which is then displayed by each core:
 
 ```python
