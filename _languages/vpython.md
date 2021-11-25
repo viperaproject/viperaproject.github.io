@@ -58,6 +58,8 @@ Arguments
 -l filename    Loads from compiled byte representation of code and runs this
 -help          Display this help and quit
 ```
+
+### Code placement
 We can see that we have options to chose which cores will execute the code (_placement_),  restrict the number of cores used on the device or number of threads acting as cores on the host (_processes_), where to place the compiled code and data (_local_  on-chip or _shared_ memory) and write out the compiled bytecode for later execution. For _soft-core_ devices running on the Xilinx PYNQ board, there are options to select which _overlay_ (_bitstream_) is loaded prior to executing the bytecode.
 
 The code and data placement options, coupled with the specification of the number of cores used for execution on the device and host, provide a great deal of flexibility. For example, using the former, codes that are bigger than the available micro-core on-chip memory can still be run from the host shared memory, with the respective performance impact. Similarly, it is possible for codes to process data much larger than the on-chip memory by storing it in the shared memory area, whilst the code itself is executing from on-chip memory. Furthermore, it is possible to simulate bigger or smaller devices by running more processes (threads) on the host to simulate more cores, or to reduce the number of physical cores used in order to simulate a smaller device. 
