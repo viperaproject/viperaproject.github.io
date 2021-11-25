@@ -6,6 +6,7 @@ image:
   thumbnail: /images/vPython-scripts.png
   # caption: "vPython scripts"
 ---
+{% include toc %}
 
 **vPython** is a parallel implementation of the **Python** programming language specially designed for micro-core architectures, on top of the **Vipera** framework. **vPython** is development of the [**ePython**](https://github.com/mesham/epython) to include the execution of codes via both a tiny interpreter (less than 44KB) and native compilation. 
 
