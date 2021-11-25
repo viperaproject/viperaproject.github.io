@@ -135,5 +135,5 @@ Not only can data be transferred a set of cores, kernel functions can also be do
 | `all`      | If set to `True`, the kernel will execute on all the available micro-cores (default) |
 | `target`   | One or more target cores that the kernel function will execute on |
 
-As **vPython** supports micro-core devices that have independently running cores, the above `@offload` parameters allows the deployment of application patterns that rely on different kernels running on different cores at the same time. Furthermore, these kernels can communicate with the host process or the other kernel functions directly, providing a fully parallel programming environment for **vPython* programs on the target micro-core devices.
+As **vPython** supports micro-core devices that have independently running cores, the above `@offload` parameters allows the deployment of application patterns that rely on different kernels running on different cores at the same time. Furthermore, these kernels can communicate with the host process or the other kernel functions directly, providing a fully parallel programming environment for **vPython** programs on the target micro-core devices.
 
