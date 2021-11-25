@@ -6,9 +6,9 @@ image:
 icon: /images/document.png
 icon_alt: Document icon  
 ---
-{% include toc %}
-
 The **Olympus** native code generation framework consists of a compiler library, with _plug-in_ language parsers and code generators, and a **C**-based _abstract machine_ that supports dynamic code loading on micro-core devices. **Olympus** can support a number of different micro-cores, including **RISC-V**, **Xilinx MicroBlaze** and **Adapteva Epiphany**, as well as traditional CPUs such as the **x86**, **ARM**, **SPARC**, **PowerPC** and **MIPS**. 
+
+{% include toc %}
 
 # Compiler framework
 ![Compiler framework](/images/olympus-compiler-framework-v1.png)
