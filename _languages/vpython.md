@@ -100,3 +100,39 @@ print helloworld(10, 20)
 ```
 
 In this **Python** script, we can see that the `helloworld()` function has been marked for downloading and execution on the micro-core device by the `@offload` _decorator_. Note that the values `10` and `20` are sent to the device, and that the return value (`30`) is sent back to the host implicitly by **vPython**. This makes it trivial to take existing **Python** codes and mark specific functions as kernels for execution on the micro-core devices. Perhaps less obvious is that **vPython** also redirects I/O from the device to the host, peforming the underlying communications and I/O on the host transparently. This makes developing and debugging kernels for micro-cores using **vPython** significantly easier and more productive than using the provided **C**-based software development kits (SDKs) for most micro-core architectures.
+
+### Data placement / communications
+Whilst the implicit data transfer between the host **Python** script and **vPython** kernels is simple to use, it would be useful to provide the programmer with greater control over the data placement of variables and the transfer of their values. The following example declares the array of integers `a` of size 10 and defines a copy on each of the cores using the `define_on_device(a)` function call. The initial values of `a` are based on the values from 1 to 10 passed implicitly in the `updateA()` function call and the initialised array is passed back to the host using the `copy_from_device()` function call.
+
+```python
+from vpython import offload, define_on_device, copy_from_device
+
+a=[0]*10
+
+define_on_device(a)
+
+@offload
+def updateA(i):
+  from parallel import coreid
+  a[i]=i * coreid()
+
+for i in range(10):
+  updateA(i)
+
+print copy_from_device("a")
+```
+
+**vPython** provides the corresponding `copy_to_device()` function to, as the name suggests, copy the value of a host **Python** variable to the cores. By default, these messaging calls are _blocking_ but they can be made _non-blocking_ by passing `async=True` as an argument. Furthermore, the target can be a single core or a list of cores e.g. `target=15`, `target=[1,3,5]` or `target=range(10)`, simplifying the implementation of certain parallel codes and patterns, where computation and communications overlap. For example, data can be transferred to the cores before the kernel functions are launched.
+
+### Code placement
+Not only can data be transferred a set of cores, kernel functions can also be downloaded and run on specific cores. The `@offload` _function decorator_ can be passed arguments that limit what cores the function will be executed on. For example, if we wished to only run the `updateA()` function above on only cores 1, 3 and 5, we would use the following decorator `@offload(target=[1,3,5])`. The `offload` decorator provides other parameters that control the execution of the kernel function:
+
+| Parameter  |  Description |
+|------------|--------------|
+| `async`    | If set to `True`, the kernel will run in a non-blocking manner where the function call will return a _handler_ of type KernelExecutionHandler immediately, which represents the state of the kernel execution of the micro-cores. Thsi can then be tested to determing the run-state of the kernel (completion etc.), allowing waiting on one or more cores. |
+| `auto`     | Where `n` is the number of cores the kernel function should execute on but does not specify the actual placement |
+| `all`      | If set to `True`, the kernel will execute on all the available micro-cores (default) |
+| `target`   | One or more target cores that the kernel function will execute on |
+
+As **vPython** supports micro-core devices that have independently running cores, the above `@offload` parameters allows the deployment of application patterns that rely on different kernels running on different cores at the same time. Furthermore, these kernels can communicate with the host process or the other kernel functions directly, providing a fully parallel programming environment for **vPython* programs on the target micro-core devices.
+
