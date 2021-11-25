@@ -96,6 +96,6 @@ To ensure cross-platform portability, device support customisation code should u
 | `ValueDefn` | A **vPython** interpreter variable value (includes type information) |
 | `SymbolNode` | A **vPython** interpreter variable symbol table node (ID and value) |
 
-> NOTE: There are a set of associated **C** macros that should be used in preference to directly accessing **Olympus** abstract machine structure fields directly which can be found in the `macros.h` and `memory.h` files in the main **Olympus** source directory. These provide the API into the **Olympus** abstract machine and will minimise the impact of underlying changes to the implementation on customised device support code or libraries.
+> NOTE: There are a set of associated **C** macros, that should be used in preference to directly accessing **Olympus** abstract machine structure fields directly, which can be found in the `macros.h` and `memory.h` files in the main **Olympus** source directory. These provide the API into the **Olympus** abstract machine and will minimise the impact of underlying changes to the implementation on customised device support code or libraries.
 
 
