@@ -141,6 +141,24 @@ Not only can data be transferred a set of cores, kernel functions can also be do
 As **vPython** supports micro-core devices that have independently running cores, the above `@offload` parameters allows the deployment of application patterns that rely on different kernels running on different cores at the same time. Furthermore, these kernels can communicate with the host process or the other kernel functions directly, providing a fully parallel programming environment for **vPython** programs on the target micro-core devices.
 
 # vPython native code compiler (vpyc)
+The `vpyc` **vPython** native code compiler provides the option to deploy compact, high-performance, binary kernels onto micro-core devices. The compiler generates **C** source files containing **Olympus** _mnemonics_ that provide and _abstract machine_ for dynamic programming languages, such as **Python**. The abstract machine has been designed to fit within the extremely limited memory constraints (32-64KB) of micro-core devices, yet return performance approaching native **C**. 
+
+As **vPython** is a dynamic programming language, `vpyc` _infers_ the types of program variables and functions, removing the requirement for the programmer to provide _type hints_ in order to compile to native code. Therefore, it is compatible with the VM compiler above and the vast majority of codes compile to native code unchanged. If for any reason `vpyc` is unable to infer the type of a variable or function, it will raise an error instructing the programmer where the issue occurs, and why it occured, allowing them to provide additional information to enable the code to compile cleanly. This approach was taken, rather than using a _boxed type_ and _runtime type inference_ to increase performance of the majority of codes, whilst ensuring that they will not fail at runtime due to a type error. 
+
+## vpyc installation
+To install the `vpyc` compiler and **Vipera** framework, ensure that the required **C** compilers (e.g. **GCC** or **Clang**) are in the `PATH` environment variable. Then execute the following steps:
+
+1. `make config` or `INSTALLDIR=<path> make config`
+2. `make build`
+3. `sudo -E make install` or `make install`
+
+It is recommended to use a local install directory e.g. `INSTALLDIR=~/.local make config` instead of the default `/usr/local` or `/usr` directories on **Unix**, negating the requirement to have `sudo` access to install **Vipera**.
+
+> NOTE: Remember to 'source ~/.bashrc' before using the 'vpyc' compiler, as the installer updates ~/.bashrc with the necessary environment variables e.g. PATH. The 'vipera.sh' script can also be used to set the environment variables. Additional compilers can be added at any time by ensuring they are in the `PATH` variable and rerunning the instructions above.
+
+To see the current build and installation options, type `make help` in the root directory of the **Vipera** project tree.
+
+## vpyc compiler options
 The native code compiler `vpyc` has a number of command line options that control the compilation of **vPython** programs. Invoking `vpyc` with the `-h` or `--help` option provides the following information:
 ```
 vPython native code compiler 0.1.238
@@ -175,9 +193,9 @@ The `-cf` and `--c-flag` options allow options to be passed through to the **C**
 
 For systems with attached micro-core devices, the `-march` or `--machine-arch` compiler options select the target micro-core device e.g. `epiphany` or `microblaze`. 
 
-> NOTE: The target device options available are dependent on those detected by the configuration and installation script. Ensure that the relevant compilers e.g. `mb-gcc` are in the `PATH` variable, or add them on the command line, when configuring the installation script (`make config`). Additional compilers can be added at any time by ensuring they are in the `PATH` variable and running `make config ; make build ; make install` in the base directory of the **Vipera** project source directory.
+> NOTE: The target device options available are dependent on those detected by the configuration and installation script. Ensure that the relevant compilers e.g. `mb-gcc` are in the `PATH` variable, or add them on the command line, when configuring the installation script (`make config`). 
 
-### C integration
+## C integration
 The Olympus `vpyc` compiler allows the integration of **C** within **vPython** programs. This is achieved though a set of `native` keywords as shown in the following **Open MPI** example:
 
 ```python
