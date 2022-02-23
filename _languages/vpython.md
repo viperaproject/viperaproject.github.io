@@ -255,4 +255,4 @@ As the **C** requires access to the relevant libary _include_ files, **vPython**
 
 
 
-[^vmodules] With additional information used by the **Olympus** **vPython** compiler.
+[^vmodules]: With additional information used by the **Olympus** **vPython** compiler.
