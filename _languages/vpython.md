@@ -139,3 +139,120 @@ Not only can data be transferred a set of cores, kernel functions can also be do
 
 As **vPython** supports micro-core devices that have independently running cores, the above `@offload` parameters allows the deployment of application patterns that rely on different kernels running on different cores at the same time. Furthermore, these kernels can communicate with the host process or the other kernel functions directly, providing a fully parallel programming environment for **vPython** programs on the target micro-core devices.
 
+## vPython native code compiler (vpyc)
+The native code compiler `vpyc` has a number of command line options that control the compilation of **vPython** programs. Invoking `vpyc` with the `-h` or `--help` option provides the following information:
+```
+vPython native code compiler 0.1.238
+Copyright (c) 2015-2022 Nick Brown and Maurice Jamieson
+
+Usage: vpyc [options] file... [options]
+
+vPython options:
+  -h, --help             Display this information
+  -v, --version          Display compiler version
+  -o, --output-file      Binary output file name
+  -i, --import-dir       Directory to be added to 'import' file path (VIPERA_MODULES)
+  -c, --compile-only     Compile vPython source file(s) to Vipera C source code only
+  -mf, --main-file       Select the vPython file to provide the 'main' functionality
+  -m, --vipera-module    Vipera module (object file)
+
+C compiler options:
+  -g, --debug-info       Include C source debug information in binary
+  -cc, --c-compile-only  Compile vPython source to object file(s), but not executable(s)
+  -I, --c-include-dir    Directory to be added to C include file path
+  -L, --c-library-dir    Directory to be added to C library file path
+  -cl, --c-library       C library name e.g. m for -lm (libm)
+  -cm, --c-module        C module (object file)
+  -cf, --c-flag          Flag to be passed to C compiler e.g. O3 for -O3
+  -D, --c-define         Define to be passed to C compiler e.g. DEBUG for -DDEBUG
+  -march, --machine-arch Select target CPU architecture (platform specific)
+```
+
+The compiler supports separate compilation where **vPython** files can be compiled to standalone modules (`.o` object files) that can then be combined to create a single binary executable using the `-m` or `--vipera-module` compiler options to specify the pre-compiled modules and the `-mf` or `--main-file` options to specify the **vPython** file to be used for the _main_ body of the executable. As **Vipera** modules are **C** object files[^vmodules], they can be collated together to form a _library_ archive file using standard Unix utilities such as `ar`. These can then be linked to **vPython** binaries using the `-cl` or `--c-library` options e.g. `-cl fastcalc` for the library `libfastcalc.a`. 
+
+The `-cf` and `--c-flag` options allow options to be passed through to the **C** compiler e.g. `-cf O3` to instruct the **C** compiler to use the `-O3` optimisation level. When using **C** frameworks, such as **Open MPI**, the `-I` or `--c-include-dir` and `-L` or `--c-include-dir` options are passed through to the **C** compiler to allow it to find the _include_ files and libraries. The related `-c` and `-cc` or `--compile-only` and `--c-compile-only` options instruct either the **vPython** to only generate the **Olympus** abstract machine **C** source file and stop, or for the **C** compiler to compile but not link the executable.
+
+For systems with attached micro-core devices, the `-march` or `--machine-arch` compiler options select the target micro-core device e.g. `epiphany` or `microblaze`. 
+
+> NOTE: The target device options available are dependent on those detected by the configuration and installation script. Ensure that the relevant compiler e.g. `mb-gcc` are in the `PATH` variable, or add them on the command line, when configuring the installation script (`make config`). Additional compilers can be added at any time by ensuring they are in the `PATH` variable and running `make config ; make build ; make install` in the base directory of the **Vipera** project source directory.
+
+### C integration
+The Olympus `vpyc` compiler allows the integration of **C** within **vPython** programs. This is achieved though a set of `native` keywords as shown in the following **Open MPI** example:
+
+```python
+native include(math)
+native include(mpi)
+
+def f(a):
+     return (4.0 / (1.0 + a * a))
+
+# MPI constants
+MPI_COMM_WORLD = native const(MPI_COMM_WORLD)
+MPI_SUM = native const(MPI_SUM)
+# Use floats not doubles on 32 bit platforms
+element = 0.0
+if native(->int) sizeof(element) == 4:
+ ELEMENT_SIZE = native const(MPI_FLOAT)
+else:
+ ELEMENT_SIZE = native const(MPI_DOUBLE)
+
+NINTERVALS = 10000
+argc = 0
+argv = [ "mpipi" ]
+
+myid = 0
+numprocs = 0
+i = 0
+
+PI25DT = 3.141592653589793238462643
+mypi = 0.0
+pi = 0.0
+h = 0.0
+sum = 0.0
+x = 0.0
+startwtime = 0.0
+endwtime = 0.0
+
+native MPI_Init(&argc, &argv)
+native MPI_Comm_size(MPI_COMM_WORLD, &numprocs)
+native MPI_Comm_rank(MPI_COMM_WORLD, &myid)
+
+startwtime = native(->float) MPI_Wtime()
+
+h = 1.0 / NINTERVALS
+sum = 0.0
+
+i = myid + 1
+while (i <= NINTERVALS):
+    x = h * (i - 0.5)
+    sum += f(x)
+    i += numprocs
+
+mypi = h * sum
+
+native MPI_Reduce(&mypi, &pi, 1, ELEMENT_SIZE, MPI_SUM, 0, MPI_COMM_WORLD)
+
+if (myid == 0):
+    print("")
+    native printf("pi is approximately %.16f, Error is %.16f\n", pi, native(->float) fabs(pi - PI25DT))
+    endwtime = native(->float) MPI_Wtime()
+    print("numprocs:", numprocs, " wall clock time = ", endwtime - startwtime, "\n")
+
+native MPI_Finalize()
+```
+
+The **vPython** `native` keyword calls **C** functions with the ability to inform `vpyc` of the function's return type e.g. `native(->float)` indicates that the following **C** function returns a `float` (real) value. The default return value is `int`, in line with standard **C**. The `native const()` option allow the value of **C** constants and variables to be returned to the **vPython** program. Again, the default type is `int` but this can be overridden as required e.g. `native const(CLOCKS_PER_SEC)->float`.
+
+The **C** integration also provides the `&` operator, similar to the **Python** `id()` function, that returns a _reference_ to a **vPython** object. This allows **vPython** values to be updated by **C** frameworks, as shown for `pi` in the `MPI` example above.
+
+As the **C** requires access to the relevant libary _include_ files, **vPython** provides the `native include()` option to pass through file references.
+
+> NOTE: The `native include()` option takes the include file base name e.g. math for math.h
+
+**vPython** also provides nascent support for compiler _pragmas_ through the `native pragma ''` option to control compiler code generation and warning options.
+
+> NOTE: This functionality is primarily for internal use within **vPython** modules and has only been extensively tested with **GCC*.
+
+
+
+[^vmodules] With additional information used by the **Olympus** **vPython** compiler.

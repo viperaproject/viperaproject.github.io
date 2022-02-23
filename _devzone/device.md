@@ -11,7 +11,7 @@ The layered and plug-in architecture of **Vipera** greatly simplifies the proces
 
 {% include toc %}
 
-The key components that are likely to require modification to support a new device are highlighted in the following diagram. 
+The key components that are likely to require modification to support a new device are highlighted in the following diagram: 
 
 ![New device changes](/images/Vipera-arch-device-changes-v1.png)
 
